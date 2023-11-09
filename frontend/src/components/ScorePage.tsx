@@ -24,6 +24,10 @@ export default function ScorePage() {
         navigate('/');
     }
 
+    const loginClick = () => {
+        navigate('/login');
+    }
+
     return (
         <div className="animate-fade-in flex flex-col justify-center items-center h-screen">
             {user && user.nickname ?
@@ -54,8 +58,8 @@ export default function ScorePage() {
                 <>
                     <p className=" text-white">Welcome to Wysa</p>
                     <p className=" text-white">There is no data found! Pease Login</p>
-                    <button className="btn-down transition duration-200" onClick={e => navigate('/')}>
-                        Enter Data
+                    <button className="btn-down transition duration-200" onClick={loginClick}>
+                        Login
                     </button>
                 </>
             }
