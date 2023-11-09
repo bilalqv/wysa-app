@@ -55,7 +55,7 @@ export default function SecondQuestion() {
     };
 
     return (
-        <div className="animate-fade-in flex justify-center items-center h-screen max-[800px]:px-2">
+        <div className="section-style">
             <div className="p-8 rounded-lg shadow-xl">
                 <h2 className="text-white font-semibold mb-4">
                     That's a great goal. How long have you been struggling with your

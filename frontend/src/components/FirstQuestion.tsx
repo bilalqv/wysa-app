@@ -20,7 +20,7 @@ export default function FirstQuestion() {
     }, []);
 
     const [options, setOptions] = useState({
-        fallAsleep: false,
+        sleepEasily: false,
         sleepThroughNight: false,
         wakeUpRefreshed: false,
     });
@@ -31,8 +31,6 @@ export default function FirstQuestion() {
     async function handleSubmit(e: any) {
         e.preventDefault();
         try {
-
-
             if (selectedOptions.length === 0) {
                 toast.error("Please select at least one option");
                 return;
@@ -64,7 +62,7 @@ export default function FirstQuestion() {
         setOptions((prevState) => ({ ...prevState, [name]: checked }));
     }
     return (
-        <div className="animate-fade-in flex justify-center items-center h-screen bg-[#111633] max-[800px]:px-2">
+        <div className="section-style">
             <div className="rounded-lg shadow-xl">
                 <h2 className="text-white font-semibold mb-4 text-2xl">
                     Let's say in a few weeks, you're sleeping well. What would change?
@@ -77,8 +75,8 @@ export default function FirstQuestion() {
                     <label className="block text-white my-3 rounded-xl p-4 bg-[#386fa6]">
                         <input
                             type="checkbox"
-                            name="fallAsleep"
-                            checked={options.fallAsleep}
+                            name="sleepEasily"
+                            checked={options.sleepEasily}
                             onChange={handleOptionChange}
                         />
                         <span className="ml-2">I would go to sleep easily</span>
@@ -99,7 +97,7 @@ export default function FirstQuestion() {
                             checked={options.wakeUpRefreshed}
                             onChange={handleOptionChange}
                         />
-                        <span className="ml-2">I would wake up on time, refreshed</span>
+                        <span className="ml-2">I'd wake up on time, refreshed</span>
                     </label>
                     <button
                         type="submit"

@@ -104,7 +104,7 @@ const addSleepChanges = async (req, res) => {
             });
         }
 
-        user.sleepChanges.push(...changes);
+        user.sleepChanges = changes;
         await user.save();
 
         res.send({

@@ -30,7 +30,7 @@ export default function ScorePage() {
     }
 
     return (
-        <div className="animate-fade-in flex flex-col justify-center items-center h-screen max-[800px]:px-2">
+        <div className="section-style flex-col">
             {user && user.nickname ?
                 <>
                     <p className="text-xl text-white mb-8">

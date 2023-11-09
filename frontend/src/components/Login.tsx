@@ -31,7 +31,7 @@ export default function Login() {
     }
 
     return (
-        <div className="animate-fade-in flex flex-col justify-center items-center h-screen max-[800px]:px-2">
+        <div className="section-style flex-col">
             <p className="text-white text-center py-4 font-bold text-2xl">
                 Hey! I'm <span className="text-[#2866c9]">wysa</span>
             </p>
