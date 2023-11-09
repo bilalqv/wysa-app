@@ -2,6 +2,13 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const hello = (req, res) => {
+    res.send({
+        success: 1,
+        message: "Hello World",
+    });
+}
+
 const register = async (req, res) => {
     try {
         let { nickname, password } = req.body;
@@ -258,4 +265,5 @@ module.exports = {
     addSleepHours,
     register,
     login,
+    hello,
 }

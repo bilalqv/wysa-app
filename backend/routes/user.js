@@ -4,7 +4,7 @@ const { isLogin } = require('../middleware/auth');
 
 const router = express.Router();
 
-
+router.get('/', userController.hello);
 router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.post('/addnickname', userController.addNickname);
