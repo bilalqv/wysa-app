@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import axios from "../axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineArrowDown } from 'react-icons/ai';
 
 
-export default function SixthPage() {
+export default function FifthQuestion() {
   const [selectedHours, setSelectedHours] = useState(0);
   const navigate = useNavigate();
   const [user, setUser] = useState({} as any);
@@ -34,7 +33,7 @@ export default function SixthPage() {
         return;
       }
 
-      await fetch("https://wysa-app-backend.vercel.app/user/addsleephours", {
+      const res = await fetch("https://wysa-app-backend.vercel.app/user/addsleephours", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,10 +44,12 @@ export default function SixthPage() {
           id: user.id,
         }),
       });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message)
 
       navigate(`/score`);
     } catch (err: any) {
-      toast.error(err.message);
+      toast.error(err.message, { autoClose: 1500 });
     }
 
   };
@@ -86,6 +87,7 @@ export default function SixthPage() {
             <AiOutlineArrowDown />
           </button>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );

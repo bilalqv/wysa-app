@@ -11,8 +11,32 @@
     }
     ```
 - **Response**:
-    - `201 Created` on successful registration
+    - `200 Created` on successful registration
+        - Response Body
+            ```json
+            {
+                "success": 1,
+                "id": 123,
+                "nickname": "user nickname",
+                "message": "user created successfully",
+            }
+            ```
     - `400 Bad Request` if validation fails or user already exists
+        - Response Body
+            ```json
+            {
+                "success": 0,
+                "message": "Error message"
+            }
+            ```
+    - `409 Conflict` if user already exists
+        - Response Body
+            ```json
+                {
+                    "success": 0,
+                    "message": "Error message"
+                }
+            ```
 
 ## 2. User Login
 
@@ -26,7 +50,24 @@
     ```
 - **Response**:
     - `200 OK` with a token on successful login
-    - `401 Unauthorized` if login credentials are invalid
+        - Response Body
+            ```json
+            {
+                "success": 1,
+                "token": "jwt auth token",
+                "id": "user id",
+                "nickname": "user nickname",
+                "message": "Logged in successfully",
+            }
+            ```
+    - `401 Unauthorized` if login credentials are invalid or nickname does not exist
+        - Response Body
+            ```json
+            {
+                "success": 0,
+                "message": "error message",
+            }
+            ```
 
 ## 3. Add Sleep Changes
 
@@ -35,18 +76,48 @@
     ```json
     {
         "id": "user_id",
-        "changes": ["Change 1", "Change 2", ...]
+        "changes": ["Change 1", "Change 2"]
     }
     ```
 - **Parameters**:
     - `id` (required): The unique identifier for the user.
-    - `changes` (required): The changes as a result of sleeping well.
+    - `changes` (required): The changes as a result of sleeping well. It is an array of changes.
 - **Headers**:
     - `Content-Type: application/json`
     - `authorization: Bearer <token>`
 - **Response**:
-    - `200 OK` on successful login
+    - `200 OK` on successfully adding the changes.
+        - Response Body:
+            ```json
+            {
+                "success": 1,
+                "message": "Changes added successfully"
+            }
+            ```
+    - `404 Not Found` if the user corresponding to the id is not found
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "User not found",
+            }
+            ```
+    - `500 Server Error` if some error occurs on the server side
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "error message",
+            }
+            ```
     - `401 Unauthorized` if user is not logged in
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "Unauthorized"
+            }
+            ```
 
 ## 4. Add Struggle Duration with Sleep
 
@@ -55,7 +126,7 @@
     ```json
     {
         "id": "user_id",
-        "struggle": "Less than two weeks" | "2 to 8 weeks" | "More than 8 weeks"
+        "struggle": "Less than two weeks | 2 to 8 weeks | More than 8 weeks"
     }
     ```
 - **Parameters**:
@@ -65,8 +136,38 @@
     - `Content-Type: application/json`
     - `authorization: Bearer <token>`
 - **Response**:
-    - `200 OK` on successful login
+    - `200 OK` on successfully adding the sleep struggle duration.
+        - Response Body:
+            ```json
+            {
+                "success": 1,
+                "message": "Changes added successfully"
+            }
+            ```
+    - `404 Not Found` if the user corresponding to the id is not found
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "User not found",
+            }
+            ```
+    - `500 Server Error` if some error occurs on the server side
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "error message",
+            }
+            ```
     - `401 Unauthorized` if user is not logged in
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "Unauthorized"
+            }
+            ```
 
 ## 5. Add User Sleep Time
 
@@ -85,8 +186,38 @@
     - `Content-Type: application/json`
     - `authorization: Bearer <token>`
 - **Response**:
-    - `200 OK` on successful login
+    - `200 OK` on successfully adding the bed sleeping time.
+        - Response Body:
+            ```json
+            {
+                "success": 1,
+                "message": "Changes added successfully"
+            }
+            ```
+    - `404 Not Found` if the user corresponding to the id is not found
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "User not found",
+            }
+            ```
+    - `500 Server Error` if some error occurs on the server side
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "error message",
+            }
+            ```
     - `401 Unauthorized` if user is not logged in
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "Unauthorized"
+            }
+            ```
 
 ## 6. Add User Wake Up Time
 
@@ -105,8 +236,38 @@
     - `Content-Type: application/json`
     - `authorization: Bearer <token>`
 - **Response**:
-    - `200 OK` on successful login
+    - `200 OK` on successfully adding the time at which user wakes up.
+        - Response Body:
+            ```json
+            {
+                "success": 1,
+                "message": "Changes added successfully"
+            }
+            ```
+    - `404 Not Found` if the user corresponding to the id is not found
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "User not found",
+            }
+            ```
+    - `500 Server Error` if some error occurs on the server side
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "error message",
+            }
+            ```
     - `401 Unauthorized` if user is not logged in
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "Unauthorized"
+            }
+            ```
 
 ## 7. Add User Sleep Hours
 
@@ -125,5 +286,35 @@
     - `Content-Type: application/json`
     - `authorization: Bearer <token>`
 - **Response**:
-    - `200 OK` on successful login
+    - `200 OK` on successfully adding the sleep duration in hours.
+        - Response Body:
+            ```json
+            {
+                "success": 1,
+                "message": "Changes added successfully"
+            }
+            ```
+    - `404 Not Found` if the user corresponding to the id is not found
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "User not found",
+            }
+            ```
+    - `500 Server Error` if some error occurs on the server side
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "error message",
+            }
+            ```
     - `401 Unauthorized` if user is not logged in
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "Unauthorized"
+            }
+            ```

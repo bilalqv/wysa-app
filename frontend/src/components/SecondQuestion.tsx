@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineArrowDown } from 'react-icons/ai';
 
 
-function Thirdpage() {
+export default function SecondQuestion() {
     const [selectedOption, setSelectedOption] = useState("");
     const navigate = useNavigate();
     const [user, setUser] = useState({} as any);
@@ -33,7 +33,7 @@ function Thirdpage() {
                 return;
             }
 
-            await fetch("https://wysa-app-backend.vercel.app/user/addsleepstruggle", {
+            const res = await fetch("https://wysa-app-backend.vercel.app/user/addsleepstruggle", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -44,16 +44,19 @@ function Thirdpage() {
                     id: user.id,
                 }),
             });
-            navigate(`/q4`);
+            const data = await res.json();
+            if (!data.success) throw new Error(data.message);
+
+            navigate('/question3');
         } catch (err: any) {
-            toast.error(err.message);
+            toast.error(err.message, { autoClose: 1500 });
         }
 
     };
 
     return (
-        <div className="animate-fade-in flex justify-center items-center h-screen bg-gray-800 max-[800px]:px-2">
-            <div className="p-8 bg-gray-900 rounded-lg shadow-xl">
+        <div className="animate-fade-in flex justify-center items-center h-screen max-[800px]:px-2">
+            <div className="p-8 rounded-lg shadow-xl">
                 <h2 className="text-white font-semibold mb-4">
                     That's a great goal. How long have you been struggling with your
                     sleep?
@@ -100,5 +103,3 @@ function Thirdpage() {
         </div>
     );
 }
-
-export default Thirdpage;

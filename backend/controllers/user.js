@@ -21,7 +21,7 @@ const register = async (req, res) => {
 
         const existingUser = await User.findOne({ nickname });
         if (existingUser) {
-            return res.status(400).send({
+            return res.status(409).send({
                 success: 0,
                 message: 'nickname already exists, choose different nickname',
             });
@@ -59,14 +59,14 @@ const login = async (req, res) => {
         }
         const user = await User.findOne({ nickname });
         if (!user) {
-            return res.status(400).send({
+            return res.status(401).send({
                 success: 0,
                 message: 'Invalid nickname',
             });
         }
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-            return res.status(400).send({
+            return res.status(401).send({
                 success: 0,
                 message: 'Invalid username or password',
             });
@@ -84,35 +84,6 @@ const login = async (req, res) => {
             message: 'Logged in successfully',
         })
 
-    } catch (err) {
-        res.status(400).send({
-            success: 0,
-            message: err.message
-        })
-    }
-}
-
-const addNickname = async (req, res) => {
-    try {
-        const { nickname } = req.body;
-        if (!nickname) {
-            return res.status(400).send({
-                success: 0,
-                error: 'Invalid Nickname',
-            });
-        }
-        const user = new User({
-            nickname
-        });
-
-        const saved = await user.save();
-
-        res.send({
-            success: 1,
-            id: saved._id,
-            nickname: saved.nickname,
-            message: 'user created successfully',
-        })
     } catch (err) {
         res.status(400).send({
             success: 0,
@@ -257,7 +228,6 @@ const addSleepHours = async (req, res) => {
 }
 
 module.exports = {
-    addNickname,
     addSleepChanges,
     addSleepStruggleDuration,
     addBedSleepTime,

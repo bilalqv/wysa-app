@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineArrowDown } from 'react-icons/ai';
 
 
 
-export default function SecondPage() {
+export default function FirstQuestion() {
     const navigate = useNavigate();
     const [user, setUser] = useState({} as any);
 
@@ -37,7 +38,7 @@ export default function SecondPage() {
                 return;
             }
 
-            await fetch("https://wysa-app-backend.vercel.app/user/addsleepchanges", {
+            const res = await fetch("https://wysa-app-backend.vercel.app/user/addsleepchanges", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,10 +49,12 @@ export default function SecondPage() {
                     id: user.id,
                 }),
             });
+            const data = await res.json();
+            if (!data.success) throw new Error(data.message);
 
-            navigate(`/q3`);
+            navigate('/question2');
         } catch (err: any) {
-            toast.error(err.message);
+            toast.error(err.message, { autoClose: 1500 });
         }
     }
 
@@ -105,6 +108,7 @@ export default function SecondPage() {
                         <AiOutlineArrowDown />
                     </button>
                 </form>
+                <ToastContainer />
             </div>
         </div>
     )

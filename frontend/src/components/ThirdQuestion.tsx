@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineArrowDown } from 'react-icons/ai';
 
 
-export default function FourthPage() {
+export default function ThirdQuestion() {
     const [selectedTime, setSelectedTime] = useState("");
     const navigate = useNavigate();
     const [user, setUser] = useState({} as any);
@@ -32,7 +32,7 @@ export default function FourthPage() {
                 return;
             }
 
-            await fetch("https://wysa-app-backend.vercel.app/user/addbedtime", {
+            const res = await fetch("https://wysa-app-backend.vercel.app/user/addbedtime", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,12 +43,13 @@ export default function FourthPage() {
                     id: user.id,
                 }),
             });
-            navigate(`/q5`);
+            const data = await res.json();
+            if (!data.success) throw new Error(data.message);
+
+            navigate('/question4');
         } catch (err: any) {
-            toast.error(err.message);
+            toast.error(err.message, { autoClose: 1500 });
         }
-
-
     };
 
     return (
@@ -68,7 +69,7 @@ export default function FourthPage() {
                     </div>
                     <button
                         type="submit"
-                        className={`btn-down ${selectedTime != ""  ? '' : ' invisible'} `}
+                        className={`btn-down ${selectedTime != "" ? '' : ' invisible'} `}
                         onClick={handleSubmit}
                     >
                         <AiOutlineArrowDown />

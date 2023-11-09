@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../util/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
 
@@ -22,7 +23,7 @@ export default function Login() {
             navigate(redirect, { replace: true });
 
         } catch (err: any) {
-            toast.error('Error!');
+            toast.error(err.message, { autoClose: 1500 });
         } finally {
             setLoading(false);
         }
@@ -50,7 +51,8 @@ export default function Login() {
                         <input onChange={e => password.current = e.target.value} className='p-2 bg-gray-700 rounded-md focus:border-blue-100 focus:ring-blue-500' type="password" name="password" />
                     </div>
 
-                    <button className=' bg-green-600 p-2 rounded-md hover:bg-gray-100 w-max mx-auto' type="submit"> {loading ? 'Registering' : 'Login'} </button>
+                    <button className=' bg-green-600 p-2 rounded-md hover:bg-green-700 w-max mx-auto' type="submit"> {loading ? 'Wait..' : 'Login'} </button>
+                    <ToastContainer />
                 </form>
                 <p className="pt-6">Not Registed?  <span className=" text-blue-700"> <Link to="/register">Register</Link> </span> </p>
             </div>

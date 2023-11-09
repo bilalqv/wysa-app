@@ -15,7 +15,7 @@ export default function HomePage() {
 
     function handleClick(e: any) {
         e.preventDefault();
-        navigate('/q2');
+        navigate('/question1');
     }
 
     function handleLogout(e: any) {

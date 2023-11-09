@@ -2,14 +2,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import SecondPage from "./components/SecondPage";
-import Thirdpage from "./components/ThirdPage";
-import FourthPage from "./components/FourthPage";
-import FifthPage from "./components/FifthPage";
-import SixthPage from "./components/SixthPage";
 import ScorePage from "./components/ScorePage";
 import { AuthProvider } from "./util/auth";
 import RequireAuth from "./util/RequireAuth";
+import FirstQuestion from "./components/FirstQuestion";
+import SecondQuestion from "./components/SecondQuestion";
+import ThirdQuestion from "./components/ThirdQuestion";
+import FourthQuestion from "./components/FourthQuestion";
+import FifthQuestion from "./components/FifthQuestion";
 
 export default function App() {
   return (
@@ -19,11 +19,11 @@ export default function App() {
           <Route path="/" element={<RequireAuth><HomePage /></RequireAuth>} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/q2" element={<RequireAuth><SecondPage /> </RequireAuth>} />
-          <Route path="/q3" element={<RequireAuth><Thirdpage /> </RequireAuth>} />
-          <Route path="/q4" element={<RequireAuth><FourthPage /> </RequireAuth>} />
-          <Route path="/q5" element={<RequireAuth><FifthPage /> </RequireAuth>} />
-          <Route path="/q6" element={<RequireAuth><SixthPage /> </RequireAuth>} />
+          <Route path="/question1" element={<RequireAuth><FirstQuestion /> </RequireAuth>} />
+          <Route path="/question2" element={<RequireAuth><SecondQuestion /> </RequireAuth>} />
+          <Route path="/question3" element={<RequireAuth><ThirdQuestion /> </RequireAuth>} />
+          <Route path="/question4" element={<RequireAuth><FourthQuestion /> </RequireAuth>} />
+          <Route path="/question5" element={<RequireAuth><FifthQuestion /> </RequireAuth>} />
           <Route path="/score" element={<RequireAuth><ScorePage /> </RequireAuth>} />
         </Routes>
       </BrowserRouter>

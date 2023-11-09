@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineArrowDown } from 'react-icons/ai';
 
 
-export default function FifthPage() {
+export default function FourthQuestion() {
   const [selectedTime, setSelectedTime] = useState("");
   const navigate = useNavigate();
   const [user, setUser] = useState({} as any);
@@ -34,7 +34,7 @@ export default function FifthPage() {
         return;
       }
 
-      await fetch("https://wysa-app-backend.vercel.app/user/addwakeuptime", {
+      const res = await fetch("https://wysa-app-backend.vercel.app/user/addwakeuptime", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,11 +45,13 @@ export default function FifthPage() {
           id: user.id,
         }),
       });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
 
-      navigate(`/q6`);
+      navigate('/question5');
 
     } catch (err: any) {
-      toast.error(err.message);
+      toast.error(err.message, { autoClose: 1500 });
     }
   };
 
