@@ -33,7 +33,7 @@ function Thirdpage() {
                 return;
             }
 
-            await fetch("http://localhost:4100/addsleepstruggle", {
+            await fetch("https://wysa-app-backend.vercel.app/addsleepstruggle", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

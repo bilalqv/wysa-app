@@ -20,7 +20,7 @@ mongoose.connect(dbURI, {})
 // using session
 
 
-app.use('/', userRoutes);
+app.use('/user', userRoutes);
 
 
 app.listen(PORT, () => {

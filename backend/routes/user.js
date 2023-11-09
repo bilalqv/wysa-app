@@ -4,8 +4,7 @@ const { isLogin } = require('../middleware/auth');
 
 const router = express.Router();
 
-router.get('/', userController.hello);
-router.get('/abc', userController.hello);
+router.get('/', userController.hello); // dummy route for testing
 router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.post('/addnickname', userController.addNickname);

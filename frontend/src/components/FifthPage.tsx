@@ -34,7 +34,7 @@ export default function FifthPage() {
         return;
       }
 
-      await fetch("http://localhost:4100/addwakeuptime", {
+      await fetch("https://wysa-app-backend.vercel.app/addwakeuptime", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

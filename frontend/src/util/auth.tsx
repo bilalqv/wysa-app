@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }: { children: any }) => {
   const [user, setUser] = useState(null);
 
   const login = async (user: any) => {
-    const res = await fetch("http://localhost:4100/login", {
+    const res = await fetch("https://wysa-app-backend.vercel.app/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
