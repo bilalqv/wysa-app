@@ -2,11 +2,11 @@
   "name": "backend-node-1",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test jest",
-    "start": "node app.js",
-    "dev": "NODE_ENV=development nodemon app.js"
+    "start": "node index.js",
+    "dev": "NODE_ENV=development nodemon index.js"
   },
   "author": "bilal",
   "license": "ISC",
