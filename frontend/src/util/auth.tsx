@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }: { children: any }) => {
   }
 
   const logout = () => {
-    localStorage.removeItem('wyasUser');
+    localStorage.removeItem('wysaUser');
     setUser(null);
   }
 

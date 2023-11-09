@@ -19,6 +19,7 @@ export default function ScorePage() {
     const auth = useAuth() as any;
     async function resetData() {
         await auth.logout();
+        navigate('/login');
     }
     function reEnterData() {
         navigate('/');
@@ -29,7 +30,7 @@ export default function ScorePage() {
     }
 
     return (
-        <div className="animate-fade-in flex flex-col justify-center items-center h-screen">
+        <div className="animate-fade-in flex flex-col justify-center items-center h-screen max-[800px]:px-2">
             {user && user.nickname ?
                 <>
                     <p className="text-xl text-white mb-8">

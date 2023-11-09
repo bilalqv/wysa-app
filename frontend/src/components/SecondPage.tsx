@@ -61,8 +61,8 @@ export default function SecondPage() {
         setOptions((prevState) => ({ ...prevState, [name]: checked }));
     }
     return (
-        <div className="animate-fade-in flex justify-center items-center h-screen bg-[#111633]">
-            <div className="p-8  rounded-lg shadow-xl">
+        <div className="animate-fade-in flex justify-center items-center h-screen bg-[#111633] max-[800px]:px-2">
+            <div className="rounded-lg shadow-xl">
                 <h2 className="text-white font-semibold mb-4 text-2xl">
                     Let's say in a few weeks, you're sleeping well. What would change?
                 </h2>
@@ -100,7 +100,7 @@ export default function SecondPage() {
                     </label>
                     <button
                         type="submit"
-                        className="btn-down w-min mx-auto text-center align-middle"
+                        className={`btn-down ${selectedOptions.length > 0 ? '' : ' invisible'} `}
                     >
                         <AiOutlineArrowDown />
                     </button>

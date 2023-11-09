@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Register() {
@@ -34,7 +34,7 @@ export default function Register() {
     }
 
     return (
-        <div className="animate-fade-in flex flex-col justify-center items-center h-screen">
+        <div className="animate-fade-in flex flex-col justify-center items-center h-screen max-[800px]:px-2">
             <p className="text-white text-center py-4 font-bold text-2xl">
                 Hey! I'm <span className="text-[#2866c9]">wysa</span>
             </p>
@@ -56,12 +56,12 @@ export default function Register() {
 
                     <button className=' bg-green-600 p-2 rounded-md hover:bg-gray-100 w-max mx-auto' type="submit"> {loading ? 'Registering' : 'Register'} </button>
                 </form>
-
+                <p className="pt-6">Already Registed?  <span className=" text-blue-700"> <Link to="/login">Login</Link> </span> </p>
             </div>
             <div className="my-4">
                 <p
                     className=" text-white text-sm text-center"
-                >By continuing, I confirm I am 13 or older and accpt the Terms of Service and Privacy Policy</p>
+                >By continuing, I confirm I am 13 or older and accept the Terms of Service and Privacy Policy</p>
             </div>
         </div>
     )

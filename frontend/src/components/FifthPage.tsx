@@ -54,7 +54,7 @@ export default function FifthPage() {
   };
 
   return (
-    <div className="animate-fade-in flex justify-center items-center h-screen">
+    <div className="animate-fade-in flex justify-center items-center h-screen  max-[800px]:px-2">
       <div className="p-8  rounded-lg shadow-xl">
         <h2 className="text-white font-semibold mb-4">
           What time do you get out of the bed to start the day?
@@ -70,7 +70,7 @@ export default function FifthPage() {
           </div>
           <button
             type="submit"
-            className="btn-down"
+            className={`btn-down ${selectedTime != "" ? '' : ' invisible'} `}
             onClick={handleSubmit}
           >
             <AiOutlineArrowDown />

@@ -25,7 +25,7 @@ export default function HomePage() {
     }
 
     return (
-        <div className="animate-fade-in flex flex-col justify-center items-center h-screen bg-[#111633]">
+        <div className="animate-fade-in flex flex-col justify-center items-center h-screen bg-[#111633]  max-[800px]:px-2">
             <p className="text-white text-center py-4 text-2xl">
                 Let's start by calculating your sleep efficiency and examining your concerns.
             </p>

@@ -63,7 +63,7 @@ export default function SixthPage() {
   }
 
   return (
-    <div className="animate-fade-in flex justify-center items-center h-screen ">
+    <div className="animate-fade-in flex justify-center items-center h-screen max-[800px]:px-2">
       <div className="p-8  rounded-lg shadow-xl">
         <h2 className="text-white font-semibold mb-4">
           Ok. How many hours of sleep do you get in a typical night?
@@ -80,7 +80,7 @@ export default function SixthPage() {
           </div>
           <button
             type="submit"
-            className="btn-down"
+            className={`btn-down ${selectedHours > 0 ? '' : ' invisible'} `}
             onClick={handleSubmit}
           >
             <AiOutlineArrowDown />

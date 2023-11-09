@@ -52,7 +52,7 @@ export default function FourthPage() {
     };
 
     return (
-        <div className="animate-fade-in flex justify-center items-center h-screen ">
+        <div className="animate-fade-in flex justify-center items-center h-screen max-[800px]:px-2 ">
             <div className="p-8  rounded-lg shadow-xl">
                 <h2 className="text-white font-semibold mb-4">
                     What time do you usually go to bed for sleep?
@@ -68,7 +68,7 @@ export default function FourthPage() {
                     </div>
                     <button
                         type="submit"
-                        className="btn-down w-max mx-auto "
+                        className={`btn-down ${selectedTime != ""  ? '' : ' invisible'} `}
                         onClick={handleSubmit}
                     >
                         <AiOutlineArrowDown />

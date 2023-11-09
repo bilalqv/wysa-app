@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../util/auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Login() {
 
@@ -30,7 +30,7 @@ export default function Login() {
     }
 
     return (
-        <div className="animate-fade-in flex flex-col justify-center items-center h-screen">
+        <div className="animate-fade-in flex flex-col justify-center items-center h-screen max-[800px]:px-2">
             <p className="text-white text-center py-4 font-bold text-2xl">
                 Hey! I'm <span className="text-[#2866c9]">wysa</span>
             </p>
@@ -52,6 +52,7 @@ export default function Login() {
 
                     <button className=' bg-green-600 p-2 rounded-md hover:bg-gray-100 w-max mx-auto' type="submit"> {loading ? 'Registering' : 'Login'} </button>
                 </form>
+                <p className="pt-6">Not Registed?  <span className=" text-blue-700"> <Link to="/register">Register</Link> </span> </p>
             </div>
         </div>
     )

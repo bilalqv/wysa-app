@@ -52,7 +52,7 @@ function Thirdpage() {
     };
 
     return (
-        <div className="animate-fade-in flex justify-center items-center h-screen bg-gray-800">
+        <div className="animate-fade-in flex justify-center items-center h-screen bg-gray-800 max-[800px]:px-2">
             <div className="p-8 bg-gray-900 rounded-lg shadow-xl">
                 <h2 className="text-white font-semibold mb-4">
                     That's a great goal. How long have you been struggling with your
@@ -91,7 +91,7 @@ function Thirdpage() {
                     </label>
                     <button
                         type="submit"
-                        className="btn-down"
+                        className={`btn-down ${selectedOption != "" ? '' : ' invisible'} `}
                     >
                         <AiOutlineArrowDown />
                     </button>
