@@ -37,7 +37,7 @@ export default function SecondPage() {
                 return;
             }
 
-            await fetch("https://wysa-app-backend.vercel.app/addsleepchanges", {
+            await fetch("https://wysa-app-backend.vercel.app/user/addsleepchanges", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

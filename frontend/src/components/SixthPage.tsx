@@ -34,7 +34,7 @@ export default function SixthPage() {
         return;
       }
 
-      await fetch("https://wysa-app-backend.vercel.app/addsleephours", {
+      await fetch("https://wysa-app-backend.vercel.app/user/addsleephours", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

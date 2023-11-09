@@ -32,7 +32,7 @@ export default function FourthPage() {
                 return;
             }
 
-            await fetch("https://wysa-app-backend.vercel.app/addbedtime", {
+            await fetch("https://wysa-app-backend.vercel.app/user/addbedtime", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

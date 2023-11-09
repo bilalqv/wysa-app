@@ -13,7 +13,7 @@ export default function Register() {
         e.preventDefault();
         try {
             setLoading(true);
-            await fetch("https://wysa-app-backend.vercel.app/register", {
+            await fetch("https://wysa-app-backend.vercel.app/user/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
