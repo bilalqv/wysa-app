@@ -2,15 +2,27 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "../util/auth";
+import { FaBeer } from 'react-icons/fa';
+import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
+import { BsArrowDown } from 'react-icons/bs';
+
 
 export default function HomePage() {
     const navigate = useNavigate();
+    const auth = useAuth() as any;
 
 
 
     function handleClick(e: any) {
         e.preventDefault();
-        navigate('/q2/1');
+        navigate('/q2');
+    }
+
+    function handleLogout(e: any) {
+        e.preventDefault();
+        auth.logout();
+        navigate('/login');
     }
 
     return (
@@ -22,7 +34,12 @@ export default function HomePage() {
                 Over time, we will work together to improve these.
             </p>
 
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-4" onClick={handleClick}>Start </button>
+            <button className="btn-down" onClick={handleClick}>
+                <AiOutlineArrowDown />
+            </button>
+            <button className="btn-down" onClick={handleLogout}>
+                Logout
+            </button>
 
         </div>
     )

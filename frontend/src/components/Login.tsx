@@ -50,7 +50,7 @@ export default function Login() {
                         <input onChange={e => password.current = e.target.value} className='p-2 bg-gray-700 rounded-md focus:border-blue-100 focus:ring-blue-500' type="password" name="password" />
                     </div>
 
-                    <button className=' bg-green-600 p-2 rounded-md hover:bg-gray-100 w-max mx-auto' type="submit"> {loading ? 'Registering' : 'Register'} </button>
+                    <button className=' bg-green-600 p-2 rounded-md hover:bg-gray-100 w-max mx-auto' type="submit"> {loading ? 'Registering' : 'Login'} </button>
                 </form>
             </div>
         </div>

@@ -21,3 +21,9 @@ body {
 .animate-fade-in {
     animation: fade-in 1.5s ease-in-out;
 }
+
+@layer components {
+    .btn-down {
+        @apply bg-[#e0922b] hover:bg-[#b07221] text-white font-semibold p-4 rounded-full mt-4;
+    }
+}

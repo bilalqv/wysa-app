@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AiOutlineArrowDown } from 'react-icons/ai';
+
 
 export default function FourthPage() {
     const [selectedTime, setSelectedTime] = useState("");
     const navigate = useNavigate();
-    const { id } = useParams();
+    const [user, setUser] = useState({} as any);
+
+    useEffect(() => {
+        const data = localStorage.getItem("wysaUser");
+        if (data) {
+            setUser(JSON.parse(data));
+        } else {
+            navigate("/login");
+        }
+    }, []);
 
     const handleTimeChange = (event: any) => {
         setSelectedTime(event.target.value);
@@ -23,13 +34,16 @@ export default function FourthPage() {
 
             await fetch("http://localhost:4100/addbedtime", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${user.token}`,
+                },
                 body: JSON.stringify({
                     sleepTime: selectedTime,
-                    id,
+                    id: user.id,
                 }),
             });
-            navigate(`/q5/${id}`);
+            navigate(`/q5`);
         } catch (err: any) {
             toast.error(err.message);
         }
@@ -39,12 +53,12 @@ export default function FourthPage() {
 
     return (
         <div className="animate-fade-in flex justify-center items-center h-screen ">
-            <div className="p-8 bg-gray-900 rounded-lg shadow-xl">
+            <div className="p-8  rounded-lg shadow-xl">
                 <h2 className="text-white font-semibold mb-4">
                     What time do you usually go to bed for sleep?
                 </h2>
-                <div className="flex items-center justify-center ">
-                    <div className="relative mr-4 ">
+                <div className="">
+                    <div className=" ">
                         <input
                             type="time"
                             value={selectedTime}
@@ -54,11 +68,13 @@ export default function FourthPage() {
                     </div>
                     <button
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full"
+                        className="btn-down w-max mx-auto "
                         onClick={handleSubmit}
                     >
-                        Submit
+                        <AiOutlineArrowDown />
                     </button>
+
+                    <ToastContainer />
                 </div>
             </div>
         </div>

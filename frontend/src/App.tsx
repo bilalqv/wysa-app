@@ -16,15 +16,15 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<RequireAuth><HomePage /></RequireAuth>} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/q2/:id" element={<RequireAuth><SecondPage /> </RequireAuth>} />
-          <Route path="/q3/:id" element={<RequireAuth><Thirdpage /> </RequireAuth>} />
-          <Route path="/q4/:id" element={<RequireAuth><FourthPage /> </RequireAuth>} />
-          <Route path="/q5/:id" element={<RequireAuth><FifthPage /> </RequireAuth>} />
-          <Route path="/q6/:id" element={<RequireAuth><SixthPage /> </RequireAuth>} />
-          <Route path="/score/:id" element={<RequireAuth><ScorePage /> </RequireAuth>} />
+          <Route path="/q2" element={<RequireAuth><SecondPage /> </RequireAuth>} />
+          <Route path="/q3" element={<RequireAuth><Thirdpage /> </RequireAuth>} />
+          <Route path="/q4" element={<RequireAuth><FourthPage /> </RequireAuth>} />
+          <Route path="/q5" element={<RequireAuth><FifthPage /> </RequireAuth>} />
+          <Route path="/q6" element={<RequireAuth><SixthPage /> </RequireAuth>} />
+          <Route path="/score" element={<RequireAuth><ScorePage /> </RequireAuth>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

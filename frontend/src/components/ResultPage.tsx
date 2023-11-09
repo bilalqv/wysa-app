@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 // import axios from "../axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { AiOutlineArrowDown } from 'react-icons/ai';
+
 
 export default function ResultPage() {
   const [score, setScore] = useState(null);
   const [nickname, setNickName] = useState("");
   const [loading, setLoading] = useState(true);
-  const { id } = useParams();
+  
   const navigate = useNavigate();
 
   useEffect(() => {

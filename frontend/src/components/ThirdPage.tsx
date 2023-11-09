@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AiOutlineArrowDown } from 'react-icons/ai';
+
 
 function Thirdpage() {
     const [selectedOption, setSelectedOption] = useState("");
     const navigate = useNavigate();
-    const { id } = useParams();
+    const [user, setUser] = useState({} as any);
+
+    useEffect(() => {
+        const data = localStorage.getItem("wysaUser");
+        if (data) {
+            setUser(JSON.parse(data));
+        } else {
+            navigate("/login");
+        }
+    }, []);
+
 
     const handleOptionChange = (event: any) => {
         setSelectedOption(event.target.value);
@@ -23,13 +35,16 @@ function Thirdpage() {
 
             await fetch("http://localhost:4100/addsleepstruggle", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${user.token}`,
+                },
                 body: JSON.stringify({
                     struggle: selectedOption,
-                    id,
+                    id: user.id,
                 }),
             });
-            navigate(`/q4/${id}`);
+            navigate(`/q4`);
         } catch (err: any) {
             toast.error(err.message);
         }
@@ -76,9 +91,9 @@ function Thirdpage() {
                     </label>
                     <button
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-4"
+                        className="btn-down"
                     >
-                        Submit
+                        <AiOutlineArrowDown />
                     </button>
                 </form>
             </div>

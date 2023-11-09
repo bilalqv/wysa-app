@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FaBeer } from 'react-icons/fa';
+import { AiOutlineArrowDown } from 'react-icons/ai';
+
+
 
 export default function SecondPage() {
     const navigate = useNavigate();
+    const [user, setUser] = useState({} as any);
+
+    useEffect(() => {
+        const data = localStorage.getItem("wysaUser");
+        if (data) {
+            setUser(JSON.parse(data));
+        } else {
+            navigate("/login");
+        }
+    }, []);
 
     const [options, setOptions] = useState({
         fallAsleep: false,
@@ -11,12 +25,13 @@ export default function SecondPage() {
         wakeUpRefreshed: false,
     });
 
-    const { id } = useParams();
+
+    const selectedOptions = Object.keys(options).filter((key: any) => options[key]);
 
     async function handleSubmit(e: any) {
         e.preventDefault();
         try {
-            const selectedOptions = Object.keys(options).filter((key: any) => options[key]);
+
 
             if (selectedOptions.length === 0) {
                 toast.error("Please select at least one option");
@@ -25,14 +40,17 @@ export default function SecondPage() {
 
             await fetch("http://localhost:4100/addsleepchanges", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${user.token}`,
+                },
                 body: JSON.stringify({
                     changes: selectedOptions,
-                    id,
+                    id: user.id,
                 }),
             });
 
-            navigate(`/q3/${id}`);
+            navigate(`/q3`);
         } catch (err: any) {
             toast.error(err.message);
         }
@@ -45,7 +63,7 @@ export default function SecondPage() {
     }
     return (
         <div className="animate-fade-in flex justify-center items-center h-screen bg-[#111633]">
-            <div className="p-8 bg-gray-900 rounded-lg shadow-xl">
+            <div className="p-8  rounded-lg shadow-xl">
                 <h2 className="text-white font-semibold mb-4 text-2xl">
                     Let's say in a few weeks, you're sleeping well. What would change?
                 </h2>
@@ -83,9 +101,9 @@ export default function SecondPage() {
                     </label>
                     <button
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-4"
+                        className="btn-down w-min mx-auto text-center align-middle"
                     >
-                        Submit
+                        <AiOutlineArrowDown />
                     </button>
                 </form>
             </div>

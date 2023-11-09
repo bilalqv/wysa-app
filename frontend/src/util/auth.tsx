@@ -14,12 +14,12 @@ export const AuthProvider = ({ children }: { children: any }) => {
       body: JSON.stringify(user),
     });
     const data = await res.json();
-    localStorage.setItem('wysaToken', data.token);
+    localStorage.setItem('wysaUser', JSON.stringify(data));
     setUser(data.nickname);
   }
 
   const logout = () => {
-    localStorage.removeItem('wysaToken');
+    localStorage.removeItem('wyasUser');
     setUser(null);
   }
 
