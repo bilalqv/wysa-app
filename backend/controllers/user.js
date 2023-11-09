@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { calculateSleepScore } = require("../services/user");
 
 const hello = (req, res) => {
     res.send({
@@ -227,6 +228,38 @@ const addSleepHours = async (req, res) => {
     }
 }
 
+const getSleepScore = async (req, res) => {
+    try {
+        const { id } = req.body;
+        if (!id) {
+            return res.status(400).send({
+                success: 0,
+                message: 'Provide user id',
+            });
+        }
+
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).send({
+                success: 0,
+                message: 'User not found',
+            });
+        }
+
+        const sleepScore = calculateSleepScore(user);
+        res.send({
+            success: 1,
+            sleepScore,
+        });
+
+    } catch (err) {
+        res.status(500).send({
+            success: 0,
+            message: err.message,
+        });
+    }
+}
+
 module.exports = {
     addSleepChanges,
     addSleepStruggleDuration,
@@ -236,4 +269,5 @@ module.exports = {
     register,
     login,
     hello,
+    getSleepScore,
 }

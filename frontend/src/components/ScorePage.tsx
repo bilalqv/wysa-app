@@ -6,14 +6,35 @@ import { useAuth } from "../util/auth";
 export default function ScorePage() {
     const navigate = useNavigate();
     const [user, setUser] = useState({} as any);
+    const [score, setScore] = useState(0);
 
     useEffect(() => {
-        const data = localStorage.getItem("wysaUser");
-        if (data) {
-            setUser(JSON.parse(data));
-        } else {
-            navigate("/login");
+        async function getSleepScore() {
+            const data = localStorage.getItem("wysaUser");
+            if (data) {
+                const userData = JSON.parse(data);
+                setUser(userData);
+                const res = await fetch("https://wysa-app-backend.vercel.app/user/getsleepscore", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        authorization: `Bearer ${userData.token}`,
+                    },
+                    body: JSON.stringify({
+                        id: userData.id,
+                    }),
+                });
+                const resData = await res.json();
+                if (!resData.success) {
+                    navigate("/login");
+                } else {
+                    setScore(resData.sleepScore);
+                }
+            } else {
+                navigate("/login");
+            }
         }
+        getSleepScore();
     }, []);
 
     const auth = useAuth() as any;
@@ -34,7 +55,7 @@ export default function ScorePage() {
             {user && user.nickname ?
                 <>
                     <p className="text-xl text-white mb-8">
-                        You seem to have a sleep efficiency of 80%. That's great!
+                        You seem to have a sleep efficiency of {score} %. That's great!
                     </p>
                     <p className="text-xl text-white mb-8"  >
                         A higher sleep efficiency means a more refreshing and energizing sleep, which can help you move into your day with a sence of lightness and ease.

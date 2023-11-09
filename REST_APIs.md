@@ -318,3 +318,51 @@
                 "message": "Unauthorized"
             }
             ```
+
+## 8. Get User's Sleep Score
+
+- **Endpoint**: `GET /user/getsleepscore`
+- **Request Body**:
+    ```json
+    {
+        "id": "user_id",
+    }
+    ```
+- **Parameters**:
+    - `id` (required): The unique identifier for the user.
+- **Headers**:
+    - `Content-Type: application/json`
+    - `authorization: Bearer <token>`
+- **Response**:
+    - `200 OK` on successfully getting the sleep score.
+        - Response Body:
+            ```json
+            {
+                "success": 1,
+                "sleepScore": "sleep_score"
+            }
+            ```
+    - `404 Not Found` if the user corresponding to the id is not found
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "User not found",
+            }
+            ```
+    - `500 Server Error` if some error occurs on the server side
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "error message",
+            }
+            ```
+    - `401 Unauthorized` if user is not logged in
+        - Response Body:
+            ```json
+            {
+                "success": 0,
+                "message": "Unauthorized"
+            }
+            ```

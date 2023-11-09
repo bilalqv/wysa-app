@@ -12,6 +12,7 @@ router.post('/addsleepstruggle', isLogin, userController.addSleepStruggleDuratio
 router.post('/addbedtime', isLogin, userController.addBedSleepTime);
 router.post('/addwakeuptime', isLogin, userController.addBedWakeupTime);
 router.post('/addsleephours', isLogin, userController.addSleepHours);
+router.get('/getsleepscore', isLogin, userController.getSleepScore);
 
 
 
