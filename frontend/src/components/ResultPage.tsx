@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // import axios from "../axios";
-import { useNavigate, useParams } from "react-router-dom";
-import { AiOutlineArrowDown } from 'react-icons/ai';
+import { useNavigate } from "react-router-dom";
+// import { AiOutlineArrowDown } from 'react-icons/ai';
 
 
 export default function ResultPage() {
-  const [score, setScore] = useState(null);
+  const [score, setScore] = useState<number | null>(null);
   const [nickname, setNickName] = useState("");
   const [loading, setLoading] = useState(true);
   
@@ -15,8 +15,8 @@ export default function ResultPage() {
     const fetchScore = async () => {
       try {
         // const response = await axios.get(`/api/results/get?id=${id}`);
-        // setNickName(response.data.nickname);
-        // setScore(response.data.sleepHealthScore);
+        setNickName("Saurabh");
+        setScore(80);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -25,10 +25,10 @@ export default function ResultPage() {
     };
 
     fetchScore();
-  }, [id]);
+  }, []);
 
   const handleContinueClick = () => {
-    localStorage.setItem("wysaUser", JSON.stringify({ id, nickname }));
+    localStorage.setItem("wysaUser", JSON.stringify({ nickname }));
 
     navigate('/');
   };

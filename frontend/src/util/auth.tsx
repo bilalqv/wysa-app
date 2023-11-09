@@ -1,6 +1,12 @@
 import { createContext, useContext, useState } from 'react';
 
-export const AuthContext = createContext(null);
+type AuthContextType = {
+  user: string | null;
+  login: (user: any) => Promise<void>;
+  logout: () => void;
+};
+
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: any }) => {
   const [user, setUser] = useState(null);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AiOutlineArrowDown } from 'react-icons/ai';
+// import { AiOutlineArrowDown } from 'react-icons/ai';
 import { useAuth } from "../util/auth";
 
 export default function ScorePage() {

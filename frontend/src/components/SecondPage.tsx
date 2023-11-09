@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { FaBeer } from 'react-icons/fa';
 import { AiOutlineArrowDown } from 'react-icons/ai';
 
 
@@ -26,7 +25,7 @@ export default function SecondPage() {
     });
 
 
-    const selectedOptions = Object.keys(options).filter((key: any) => options[key]);
+    const selectedOptions = Object.keys(options).filter((key: string) => options[key as keyof typeof options]);
 
     async function handleSubmit(e: any) {
         e.preventDefault();

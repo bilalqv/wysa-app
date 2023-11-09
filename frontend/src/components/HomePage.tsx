@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../util/auth";
-import { FaBeer } from 'react-icons/fa';
-import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
-import { BsArrowDown } from 'react-icons/bs';
+import { AiOutlineArrowDown } from 'react-icons/ai';
+// import { BsArrowDown } from 'react-icons/bs';
 
 
 export default function HomePage() {
