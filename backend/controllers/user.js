@@ -230,7 +230,7 @@ const addSleepHours = async (req, res) => {
 
 const getSleepScore = async (req, res) => {
     try {
-        const { id } = req.body;
+        const { id } = req.user;
         if (!id) {
             return res.status(400).send({
                 success: 0,

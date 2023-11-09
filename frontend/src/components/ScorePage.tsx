@@ -19,10 +19,7 @@ export default function ScorePage() {
                     headers: {
                         "Content-Type": "application/json",
                         authorization: `Bearer ${userData.token}`,
-                    },
-                    body: JSON.stringify({
-                        id: userData.id,
-                    }),
+                    }
                 });
                 const resData = await res.json();
                 if (!resData.success) {

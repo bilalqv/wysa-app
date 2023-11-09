@@ -18,11 +18,11 @@ function calculateSleepScore(user) {
         (wakeUpHour - bedHour) * 60 + (wakeUpMinute - bedMinute);
 
     if (sleepHours >= 7) {
-        score += 20;
+        score += 40;
     } else if (sleepHours >= 6) {
-        score += 10;
+        score += 30;
     } else {
-        score += 5;
+        score += 20;
     }
 
     for (let i = 0; i < sleepChanges.length; i++) {
