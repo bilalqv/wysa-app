@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AiOutlineArrowDown } from 'react-icons/ai';
+import ArrowButton from "./ArrowButton";
 
 
 export default function FifthQuestion() {
@@ -65,10 +65,10 @@ export default function FifthQuestion() {
 
   return (
     <div className="section-style">
-      <div className="p-8  rounded-lg shadow-xl">
-        <h2 className="text-white font-semibold mb-4">
-          Ok. How many hours of sleep do you get in a typical night?
-        </h2>
+      <div className="p-6 rounded-md shadow-md">
+        <p className="question-title">
+          Ok. How many hours sleep do you get in a typical night?
+        </p>
         <div className="items-center justify-center ">
           <div className="">
             <select
@@ -79,13 +79,8 @@ export default function FifthQuestion() {
               {options}
             </select>
           </div>
-          <button
-            type="submit"
-            className={`btn-down ${selectedHours > 0 ? '' : ' invisible'} `}
-            onClick={handleSubmit}
-          >
-            <AiOutlineArrowDown />
-          </button>
+          
+          <ArrowButton cssClass={`${selectedHours > 0 ? '' : ' invisible'}`} handleSubmit={handleSubmit} />
         </div>
         <ToastContainer />
       </div>

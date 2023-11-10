@@ -1,6 +1,7 @@
 # Wysa App
 
-## Live Url: [https://wysa-app.vercel.app/](https://wysa-app.vercel.app/)
+### Live Url: [https://wysa-app.vercel.app/](https://wysa-app.vercel.app/)
+#### Backend Deployed Url: [https://wysa-app-backend.vercel.app/user](https://wysa-app-backend.vercel.app/user)
 
 This Fullstack application is created as an assignment task for the Fullstack Developer role at [Wysa](https://www.wysa.com/).
 

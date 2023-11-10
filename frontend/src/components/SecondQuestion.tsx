@@ -7,8 +7,26 @@ import { AiOutlineArrowDown } from 'react-icons/ai';
 
 export default function SecondQuestion() {
     const [selectedOption, setSelectedOption] = useState("");
-    const navigate = useNavigate();
     const [user, setUser] = useState({} as any);
+    const navigate = useNavigate();
+
+    const options = [
+        {
+            id: 1,
+            title: "Less than 2 weeks",
+            value: "Less than 2 weeks",
+        },
+        {
+            id: 2,
+            title: "2 to 8 weeks",
+            value: "2 to 8 weeks",
+        },
+        {
+            id: 3,
+            title: "More than 8 weeks",
+            value: "More than 8 weeks",
+        }
+    ];
 
     useEffect(() => {
         const data = localStorage.getItem("wysaUser");
@@ -56,42 +74,28 @@ export default function SecondQuestion() {
 
     return (
         <div className="section-style">
-            <div className="p-8 rounded-lg shadow-xl">
-                <h2 className="text-white font-semibold mb-4">
+            <div className="p-6 rounded-md shadow-md">
+                <p className="question-title">
                     That's a great goal. How long have you been struggling with your
                     sleep?
-                </h2>
+                </p>
                 <form onSubmit={handleSubmit}>
-                    <label className="block text-white my-3 rounded-xl p-4 bg-[#386fa6]">
-                        <input
-                            type="radio"
-                            name="struggle"
-                            value="Less than 2 weeks"
-                            checked={selectedOption === "Less than 2 weeks"}
-                            onChange={handleOptionChange}
-                        />
-                        <span className="ml-2">Less than 2 weeks</span>
-                    </label>
-                    <label className="block text-white my-3 rounded-xl p-4 bg-[#386fa6]">
-                        <input
-                            type="radio"
-                            name="struggle"
-                            value="2 to 8 weeks"
-                            checked={selectedOption === "2 to 8 weeks"}
-                            onChange={handleOptionChange}
-                        />
-                        <span className="ml-2">2 to 8 weeks</span>
-                    </label>
-                    <label className="block text-white my-3 rounded-xl p-4 bg-[#386fa6]">
-                        <input
-                            type="radio"
-                            name="struggle"
-                            value="More than 8 weeks"
-                            checked={selectedOption === "More than 8 weeks"}
-                            onChange={handleOptionChange}
-                        />
-                        <span className="ml-2">More than 8 weeks</span>
-                    </label>
+                    {
+                        options.map((option, index) => {
+                            return (
+                                <label className="block text-white my-3 rounded-xl p-4 bg-[#386fa6]" key={index}>
+                                    <input
+                                        type="radio"
+                                        name="struggle"
+                                        value={option.value}
+                                        checked={selectedOption === option.value}
+                                        onChange={handleOptionChange}
+                                    />
+                                    <span className="ml-2">{option.title}</span>
+                                </label>
+                            )
+                        })
+                    }
                     <button
                         type="submit"
                         className={`btn-down ${selectedOption != "" ? '' : ' invisible'} `}

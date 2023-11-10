@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AiOutlineArrowDown } from 'react-icons/ai';
+import ArrowButton from "./ArrowButton";
 
 
 export default function ThirdQuestion() {
@@ -54,10 +54,10 @@ export default function ThirdQuestion() {
 
     return (
         <div className="section-style ">
-            <div className="p-8  rounded-lg shadow-xl">
-                <h2 className="text-white font-semibold mb-4">
+            <div className="p-6 rounded-md shadow-md">
+                <p className="question-title">
                     What time do you usually go to bed for sleep?
-                </h2>
+                </p>
                 <div className="">
                     <div className=" ">
                         <input
@@ -67,13 +67,7 @@ export default function ThirdQuestion() {
                             className="pl-2 border border-gray-500 rounded-md py-2 px-2 text-white bg-gray-800 w-32 text-center"
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className={`btn-down ${selectedTime != "" ? '' : ' invisible'} `}
-                        onClick={handleSubmit}
-                    >
-                        <AiOutlineArrowDown />
-                    </button>
+                    <ArrowButton cssClass={`${selectedTime != "" ? '' : ' invisible'}`} handleSubmit={handleSubmit}  />
 
                     <ToastContainer />
                 </div>

@@ -30,4 +30,8 @@ body {
     .section-style {
         @apply animate-fade-in flex justify-center items-center h-screen max-[800px]:px-2;
     }
+
+    .question-title {
+        @apply text-white font-semibold mb-4 text-xl;
+    }
 }

@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineArrowDown } from 'react-icons/ai';
 
 
-
 export default function FirstQuestion() {
     const navigate = useNavigate();
     const [user, setUser] = useState({} as any);
@@ -19,19 +18,37 @@ export default function FirstQuestion() {
         }
     }, []);
 
-    const [options, setOptions] = useState({
+    const [answers, setAnswers] = useState({
         sleepEasily: false,
         sleepThroughNight: false,
         wakeUpRefreshed: false,
     });
 
+    const options = [
+        {
+            id: 1,
+            title: "I would go to sleep easily",
+            name: "sleepEasily",
+        },
+        {
+            id: 2,
+            title: "I would sleep through the night",
+            name: "sleepThroughNight",
+        },
+        {
+            id: 3,
+            title: "I'd wake up on time, refreshed",
+            name: "wakeUpRefreshed",
+        }
+    ];
 
-    const selectedOptions = Object.keys(options).filter((key: string) => options[key as keyof typeof options]);
+
+    const selectedAnswers = Object.keys(answers).filter((key: string) => answers[key as keyof typeof answers]);
 
     async function handleSubmit(e: any) {
         e.preventDefault();
         try {
-            if (selectedOptions.length === 0) {
+            if (selectedAnswers.length === 0) {
                 toast.error("Please select at least one option");
                 return;
             }
@@ -43,7 +60,7 @@ export default function FirstQuestion() {
                     authorization: `Bearer ${user.token}`,
                 },
                 body: JSON.stringify({
-                    changes: selectedOptions,
+                    changes: selectedAnswers,
                     id: user.id,
                 }),
             });
@@ -59,52 +76,41 @@ export default function FirstQuestion() {
 
     function handleOptionChange(e: any) {
         const { name, checked } = e.target;
-        setOptions((prevState) => ({ ...prevState, [name]: checked }));
+        setAnswers((prevState) => ({ ...prevState, [name]: checked }));
     }
     return (
         <div className="section-style">
-            <div className="rounded-lg shadow-xl">
-                <h2 className="text-white font-semibold mb-4 text-2xl">
+            <div className="p-6 rounded-md shadow-md">
+                <p className="question-title">
                     Let's say in a few weeks, you're sleeping well. What would change?
-                </h2>
-                <p className="text-white font-semibold mb-4">
+                </p>
+                <p className="text-white mb-4">
                     Select all the changes you would like to see
                 </p>
 
                 <form onSubmit={handleSubmit}>
-                    <label className="block text-white my-3 rounded-xl p-4 bg-[#386fa6]">
-                        <input
-                            type="checkbox"
-                            name="sleepEasily"
-                            checked={options.sleepEasily}
-                            onChange={handleOptionChange}
-                        />
-                        <span className="ml-2">I would go to sleep easily</span>
-                    </label>
-                    <label className="block text-white my-3 rounded-xl p-4 bg-[#386fa6]">
-                        <input
-                            type="checkbox"
-                            name="sleepThroughNight"
-                            checked={options.sleepThroughNight}
-                            onChange={handleOptionChange}
-                        />
-                        <span className="ml-2">I would sleep through the night</span>
-                    </label>
-                    <label className="block text-white my-3 rounded-xl p-4 bg-[#386fa6]">
-                        <input
-                            type="checkbox"
-                            name="wakeUpRefreshed"
-                            checked={options.wakeUpRefreshed}
-                            onChange={handleOptionChange}
-                        />
-                        <span className="ml-2">I'd wake up on time, refreshed</span>
-                    </label>
+                    {
+                        options.map((option, index) => {
+                            return (
+                                <label className="block text-white my-3 rounded-xl p-4 bg-[#386fa6]" key={index}>
+                                    <input
+                                        type="checkbox"
+                                        name={option.name}
+                                        checked={answers[option.name as keyof typeof answers]}
+                                        onChange={handleOptionChange}
+                                    />
+                                    <span className="ml-2">{option.title}</span>
+                                </label>
+                            )
+                        })
+                    }
                     <button
                         type="submit"
-                        className={`btn-down ${selectedOptions.length > 0 ? '' : ' invisible'} `}
+                        className={`btn-down ${selectedAnswers.length > 0 ? '' : ' invisible'} `}
                     >
                         <AiOutlineArrowDown />
                     </button>
+
                 </form>
                 <ToastContainer />
             </div>

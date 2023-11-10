@@ -69,7 +69,7 @@ const login = async (req, res) => {
         if (!match) {
             return res.status(401).send({
                 success: 0,
-                message: 'Invalid username or password',
+                message: 'Invalid nickname or password',
             });
         }
 

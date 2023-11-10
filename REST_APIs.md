@@ -126,7 +126,7 @@
     ```json
     {
         "id": "user_id",
-        "struggle": "Less than two weeks | 2 to 8 weeks | More than 8 weeks"
+        "struggle": "Less than 2 weeks | 2 to 8 weeks | More than 8 weeks"
     }
     ```
 - **Parameters**:
